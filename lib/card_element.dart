@@ -3,9 +3,17 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CardWidget extends StatelessWidget {
   final bool isSelected;
+  final String image;
+  final Color backgroundColor;
+  final String textTitle;
+  final String textTime;
 
   CardWidget({
    this.isSelected = false,
+    this.image,
+    this.backgroundColor,
+    this.textTitle,
+    this.textTime,
 });
 
 
@@ -15,21 +23,20 @@ class CardWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
-      color: Color(0xFF217ea5),
+      color: backgroundColor,
       child: Row(
         children: [
           Expanded(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
-                child: Image.asset('images/peep_blue.png'),),
+                child: Image.asset(image),),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.end, //УБРАЛА ЭТО
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
-                  // alignment: Alignment.topRight,
                   padding: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
                   decoration: BoxDecoration(
                       boxShadow: [
@@ -75,21 +82,18 @@ class CardWidget extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: ElevatedButton(
-                    child: Text(
-                      'Getting started',
-                      style: GoogleFonts.dosis(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                      ),
+                ElevatedButton(
+                  child: Text(
+                    'Getting started',
+                    style: GoogleFonts.dosis(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
                     ),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        Color(0xFFFF7338),
-                      ),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      Color(0xFFFF7338),
                     ),
                   ),
                 ),
