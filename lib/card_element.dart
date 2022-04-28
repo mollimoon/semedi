@@ -7,6 +7,7 @@ class CardWidget extends StatelessWidget {
   final Color backgroundColor;
   final String textTitle;
   final String textTime;
+  final double fontSize;
 
   CardWidget({
    this.isSelected = false,
@@ -14,6 +15,7 @@ class CardWidget extends StatelessWidget {
     this.backgroundColor,
     this.textTitle,
     this.textTime,
+    this.fontSize,
 });
 
 
@@ -63,39 +65,40 @@ class CardWidget extends StatelessWidget {
                 ),
                 SizedBox(
                     height: 36),
-                Text(
-                  'Falling asleep',
+                Text(textTitle,
                   style: GoogleFonts.dosis(
-                    fontSize: 32,
+                    fontSize: fontSize,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
-                Text(
+                isSelected? Text(
                   'Meditation to prepare the mind for sleep',
                   style: GoogleFonts.dosis(
                     fontSize: 11,
                     fontWeight: FontWeight.w500,
                     color: Colors.white,
                   ),
-                ),
+                ) : Text(''),
                 SizedBox(
                   height: 15,
                 ),
-                ElevatedButton(
-                  child: Text(
-                    'Getting started',
-                    style: GoogleFonts.dosis(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                Container(
+                  child: isSelected? ElevatedButton(
+                    child: Text(
+                      'Getting started',
+                      style: GoogleFonts.dosis(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Color(0xFFFF7338),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                        Color(0xFFFF7338),
+                      ),
                     ),
-                  ),
+                  ): Container(),
                 ),
               ],
             ),
