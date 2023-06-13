@@ -6,7 +6,7 @@ class MusicData {
   final String duration;
   final String description;
 
-  MusicData({
+  MusicData( {
     required this.id,
     required this.image,
     required this.backgroundColorHex,
