@@ -1,4 +1,4 @@
-class MusicData {
+class MusicData { //модель данных
   final int id;
   final String image;
   final String backgroundColorHex;
