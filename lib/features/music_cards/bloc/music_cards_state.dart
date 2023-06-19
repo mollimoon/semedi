@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../data/music_data.dart';
+import '../../../data/music_data.dart';
 
 class MusicCardsState {} //главный родительский класс
 
