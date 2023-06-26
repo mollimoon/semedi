@@ -1,7 +1,7 @@
 class MusicData { //модель данных
   final int id;
   final String image;
-  final String backgroundColorHex;
+  final int backgroundColorHex;
   final String name;
   final String duration;
   final String description;

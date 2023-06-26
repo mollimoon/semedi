@@ -10,11 +10,12 @@ class MusicCardsLoadingState extends MusicCardsState with EquatableMixin {
 }
 
 class MusicCardsSuccessState extends MusicCardsState with EquatableMixin {
+  final MusicData currentMusic;
   final List<MusicData> musicList; // отвечает за отображение полученных данных <musicData>
-  MusicCardsSuccessState({required this.musicList});
+  MusicCardsSuccessState({required this.musicList, required this.currentMusic});
 
   @override
-  List<Object?> get props => [musicList];
+  List<Object?> get props => [musicList, currentMusic];
 }
 
 class MusicCardsErrorState extends MusicCardsState with EquatableMixin {

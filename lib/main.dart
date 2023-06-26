@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'cards_screen.dart';
+import 'features/music_cards/view/music_cards_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MusicCards(), //показ-т с какой точки начнет показ
+      home: MusicCardsScreen(), //показ-т с какой точки начнет показ
     );
   }
 }

@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:semedi/play_screen.dart';
 
+import 'data/music_data.dart';
+
 class CardWidget extends StatelessWidget {
   final bool isSelected;
-  final String image;
-  final Color backgroundColor;
-  final String textTitle;
-  final String textTime;
-  final double fontSize;
+  final MusicData music;
+
 
   CardWidget({
     this.isSelected = false,
-    required this.image,
-    required this.backgroundColor,
-    required this.textTitle,
-    required this.textTime,
-    required this.fontSize,
+    required this.music,
   });
 
   @override
@@ -38,7 +33,7 @@ class CardWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
-      color: backgroundColor,
+      color: Color(music.backgroundColorHex),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end, //move pic down
         children: [
@@ -46,7 +41,7 @@ class CardWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
               child: Image.asset(
-                image,
+                music.image,
               ),
             ),
           ),
@@ -63,7 +58,7 @@ class CardWidget extends StatelessWidget {
                       color: Color(0xFFf9faff),
                       borderRadius: BorderRadius.circular(100)),
                   child: Text(
-                    textTime,
+                    music.duration,
                     style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w500,
@@ -72,9 +67,9 @@ class CardWidget extends StatelessWidget {
                 ),
                 // SizedBox(height: 36),
                 Text(
-                  textTitle,
+                  music.name,
                   style: TextStyle(
-                    fontSize: fontSize,
+                    fontSize: isSelected ? 32 : 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
