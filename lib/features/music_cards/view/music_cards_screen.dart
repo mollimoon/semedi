@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:semedi/card_widget.dart';
 import 'package:semedi/features/music_cards/bloc/music_cards_cubit.dart';
 import 'package:semedi/features/music_cards/bloc/music_cards_state.dart';
+import 'package:semedi/l10n/app_strings.dart';
+
+import '../../../play_screen.dart';
 
 class MusicCardsScreen extends StatefulWidget {
   @override
@@ -28,7 +31,7 @@ class _MusicCardsScreenState extends State<MusicCardsScreen> {
             if (state is MusicCardsSuccessState) {
               return SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 16, left: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     children: [
                       AppBar(
@@ -38,6 +41,7 @@ class _MusicCardsScreenState extends State<MusicCardsScreen> {
                       CardWidget(
                         isSelected: true,
                         music: state.currentMusic, //from current state
+                        onTap: _goToPlayscreen,
                       ),
                       SizedBox(
                         height: 24,
@@ -45,7 +49,7 @@ class _MusicCardsScreenState extends State<MusicCardsScreen> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Made for you',
+                          AppStrings.musicListTitle,
                           style: TextStyle(
                             fontSize: 23,
                             fontWeight: FontWeight.w600,
@@ -62,6 +66,13 @@ class _MusicCardsScreenState extends State<MusicCardsScreen> {
                           for (final music in state.musicList)
                             CardWidget(
                               music: music,
+                              onTap: () async {
+                                // _goToPlayscreen().then(
+                                //   (_) => _musicCubit.selectMusic(music),
+                                // ); //another example
+                                await _goToPlayscreen();
+                                _musicCubit.selectMusic(music);
+                              },
                             ),
                         ],
                       ),
@@ -75,6 +86,14 @@ class _MusicCardsScreenState extends State<MusicCardsScreen> {
             }
             return const Center(child: CircularProgressIndicator());
           }),
+    );
+  }
+
+  Future<void> _goToPlayscreen() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => PlayScreen(),
+      ),
     );
   }
 }
