@@ -62,7 +62,6 @@ class CardWidget extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
                       decoration: BoxDecoration(
-                        boxShadow: boxShadow,
                         color: Color(0xFFf9faff),
                         borderRadius: BorderRadius.circular(100),
                       ),
@@ -75,7 +74,7 @@ class CardWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // SizedBox(height: 36),
+                  SizedBox(height: 70), //SMALL cards
                   Text(
                     music.name,
                     style: TextStyle(

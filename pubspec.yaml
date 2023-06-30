@@ -30,8 +30,15 @@ dev_dependencies:
 
 
 flutter:
+#  fonts:
+#    - family: Dosis
+#      fonts:
+#        - asset: assets/fonts/Dosis-Regular.ttf
+#        - asset: assets/fonts/Dosis-Bold.ttf
+#        - asset: assets/fonts/Dosis-Light.ttf
+
 
   uses-material-design: true
   assets:
-    - images/
+    - assets/images/
 

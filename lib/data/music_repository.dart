@@ -5,7 +5,7 @@ class MusicRepository {
     return [
       MusicData(
         id: 1,
-        image: 'images/peep_blue.png',
+        image: 'assets/images/peep_blue.png',
         backgroundColorHex: 0xFF217ea5,
         name: 'Falling asleep',
         duration: '10 minutes',
@@ -13,7 +13,7 @@ class MusicRepository {
       ),
       MusicData(
         id: 2,
-        image: 'images/peep_green.png',
+        image: 'assets/images/peep_green.png',
         backgroundColorHex: 0xFF146354,
         name: 'Anxiety',
         duration: '5 minutes',
@@ -21,7 +21,7 @@ class MusicRepository {
       ),
       MusicData(
         id: 3,
-        image: 'images/peep_navy.png',
+        image: 'assets/images/peep_navy.png',
         backgroundColorHex: 0xFF1d3eb4,
         name: 'Physical \n health',
         duration: '12 minutes',
@@ -29,7 +29,7 @@ class MusicRepository {
       ),
       MusicData(
         id: 4,
-        image: 'images/peep_orange.png',
+        image: 'assets/images/peep_orange.png',
         backgroundColorHex: 0xFFf2a54a,
         name: 'Productivity',
         duration: '7 minutes',
@@ -37,11 +37,27 @@ class MusicRepository {
       ),
       MusicData(
         id: 5,
-        image: 'images/peep_red.png',
+        image: 'assets/images/peep_red.png',
         backgroundColorHex: 0xFFb7351c,
         name: 'Work life',
         duration: '15 minutes',
         description: 'Tunes for stress relief and work-life balance',
+      ),
+      MusicData(
+        id: 6,
+        image: 'assets/images/peep_green.png',
+        backgroundColorHex: 0xFFc27ba0,
+        name: 'Anxiety',
+        duration: '5 minutes',
+        description: 'Soundscapes to calm and ease anxiety',
+      ),
+      MusicData(
+        id: 7,
+        image: 'assets/images/peep_navy.png',
+        backgroundColorHex: 0xFF674ea7,
+        name: 'Physical \n health',
+        duration: '12 minutes',
+        description: 'Melodies for relaxation and rejuvenation',
       ),
     ];
   }
