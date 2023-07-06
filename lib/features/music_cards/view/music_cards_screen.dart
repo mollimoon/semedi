@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:semedi/card_widget.dart';
+import 'package:semedi/data/music_data.dart';
 import 'package:semedi/features/music_cards/bloc/music_cards_cubit.dart';
 import 'package:semedi/features/music_cards/bloc/music_cards_state.dart';
 import 'package:semedi/l10n/app_strings.dart';
 
 import '../../../play_screen.dart';
+
+
+///TODO надпись в карточке не должна переноситься на 2 строчку
+///картинки должны быть одного размера
+
+
 
 class MusicCardsScreen extends StatefulWidget {
   @override
@@ -38,10 +45,13 @@ class _MusicCardsScreenState extends State<MusicCardsScreen> {
                       backgroundColor: Colors.transparent,
                       elevation: 0,
                     ),
-                    CardWidget(
-                      isSelected: true,
-                      music: state.currentMusic, //from current state
-                      onTap: _goToPlayscreen,
+                    SizedBox(
+                      height: 220,
+                      child: CardWidget(
+                        isSelected: true,
+                        music: state.currentMusic, //from current state
+                        onTap: () => _goToPlayscreen(state.currentMusic),
+                      ),
                     ),
                     SizedBox(height: 24),
                     Align(
@@ -75,7 +85,7 @@ class _MusicCardsScreenState extends State<MusicCardsScreen> {
                                       // _goToPlayscreen().then(
                                       //   (_) => _musicCubit.selectMusic(music),
                                       // ); //another example
-                                      await _goToPlayscreen();
+                                      await _goToPlayscreen(music);
                                       _musicCubit.selectMusic(music);
                                     },
                                   ),
@@ -98,10 +108,13 @@ class _MusicCardsScreenState extends State<MusicCardsScreen> {
     );
   }
 
-  Future<void> _goToPlayscreen() async {
+  Future<void> _goToPlayscreen(MusicData music) async {
     await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => PlayScreen(),
+        settings: RouteSettings(
+          arguments: music,
+        ),
       ),
     );
   }

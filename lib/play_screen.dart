@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:semedi/data/music_data.dart';
 
 
 class PlayScreen extends StatefulWidget {
@@ -11,8 +12,9 @@ class _PlayScreenState extends State<PlayScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final musicChoice = ModalRoute.of(context)?.settings.arguments as MusicData; //распаковка данных
     return Scaffold(
-      backgroundColor: Color(0xFF217ea5),
+      backgroundColor: Color(musicChoice.backgroundColorHex),
       body: Center(
         child: Column(
           children: [
@@ -21,7 +23,7 @@ class _PlayScreenState extends State<PlayScreen> {
               elevation: 0,
             ),
             Text(
-              'Falling asleep',
+              musicChoice.name,
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.w700,
@@ -29,7 +31,7 @@ class _PlayScreenState extends State<PlayScreen> {
               ),
             ),
             Text(
-              'Meditation to prepare the mind for sleep',
+              musicChoice.description,
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w500,

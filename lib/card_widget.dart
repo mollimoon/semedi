@@ -17,20 +17,18 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final boxShadow = isSelected
-        ? [
-            // color: Colors.white, //background color of box
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 4.0, // soften the shadow
-              spreadRadius: 0.0, //extend the shadow
-              offset: Offset(
-                0.0, // Move to right 10  horizontally
-                4.0, // Move to bottom 10 Vertically
-              ),
-            ),
-          ]
-        : null;
+    var splitName = '';
+    if (isSelected) {
+      splitName = music.name;
+    } else {
+      final textList = music.name.split(' ');
+      for (var i = 0; i < textList.length; i++) {
+        splitName += textList[i];
+        if (i != textList.length - 1) {
+          splitName += '\n';
+        }
+      }
+    }
 
     return GestureDetector(
       onTap: onTap,
@@ -48,6 +46,7 @@ class CardWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16.0),
                 child: Image.asset(
                   music.image,
+                  alignment: Alignment.bottomLeft,
                 ),
               ),
             ),
@@ -65,33 +64,42 @@ class CardWidget extends StatelessWidget {
                         color: Color(0xFFf9faff),
                         borderRadius: BorderRadius.circular(100),
                       ),
-                      child: Text(
-                        music.duration,
-                        style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w500,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2),
+                        child: Text(
+                          music.duration,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 70), //SMALL cards
-                  Text(
-                    music.name,
-                    style: TextStyle(
-                      fontSize: isSelected ? 32 : 16,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  ),
-                  if (isSelected)
-                    Text(
-                      music.description,
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      SizedBox(height: 10),
+                      Text(
+                        splitName,
+                        // music.name,
+                        style: TextStyle(
+                          fontSize: isSelected ? 32 : 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
+                      if (isSelected)
+                        Text(
+                          music.description,
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                    ],
+                  )
                 ],
               ),
             ),
