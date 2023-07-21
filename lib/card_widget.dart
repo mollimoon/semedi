@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:semedi/l10n/app_strings.dart';
-import 'package:semedi/play_screen.dart';
+import 'package:semedi/features/play/view/play_screen.dart';
 
 import 'data/music_data.dart';
 

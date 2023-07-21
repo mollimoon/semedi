@@ -7,13 +7,7 @@ import 'package:semedi/features/music_cards/bloc/music_cards_cubit.dart';
 import 'package:semedi/features/music_cards/bloc/music_cards_state.dart';
 import 'package:semedi/l10n/app_strings.dart';
 
-import '../../../play_screen.dart';
-
-
-///TODO надпись в карточке не должна переноситься на 2 строчку
-///картинки должны быть одного размера
-
-
+import '../../play/view/play_screen.dart';
 
 class MusicCardsScreen extends StatefulWidget {
   @override
@@ -21,7 +15,7 @@ class MusicCardsScreen extends StatefulWidget {
 }
 
 class _MusicCardsScreenState extends State<MusicCardsScreen> {
-  late final MusicCardsCubit _musicCubit;
+  late final MusicCardsCubit _musicCubit; //можно присвоить MusicCardsCubit() сразу
   @override
   void initState() {
     super.initState();
@@ -86,7 +80,7 @@ class _MusicCardsScreenState extends State<MusicCardsScreen> {
                                       //   (_) => _musicCubit.selectMusic(music),
                                       // ); //another example
                                       await _goToPlayscreen(music);
-                                      _musicCubit.selectMusic(music);
+                                      _musicCubit.selectMusic(music); //меняем карточки
                                     },
                                   ),
                               ],
@@ -111,10 +105,8 @@ class _MusicCardsScreenState extends State<MusicCardsScreen> {
   Future<void> _goToPlayscreen(MusicData music) async {
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => PlayScreen(),
-        settings: RouteSettings(
-          arguments: music,
-        ),
+        // TODO 2: move music into PlayScreen() +
+        builder: (context) => PlayScreen(music: music), //название параметров : данные
       ),
     );
   }

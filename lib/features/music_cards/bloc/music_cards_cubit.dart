@@ -9,12 +9,12 @@ class MusicCardsCubit extends Cubit<MusicCardsState> {
 
   final _musicRepository = MusicRepository();
 
-  void fetchMusicData() {
-    _getAndChangeMusic();
+  void fetchMusicData() { // 1-й метод MusicCardsCubit
+    _getAndChangeMusic(); //изменяет состояние Cubit.
   }
 
-  void selectMusic(MusicData selectedMusic) {
-    _getAndChangeMusic(selectedMusic: selectedMusic);
+  void selectMusic(MusicData selectedMusic) { // 2-й метод MusicCardsCubit
+    _getAndChangeMusic(selectedMusic: selectedMusic);//изменяет состояние Cubit.
   }
 
   void _getAndChangeMusic({MusicData? selectedMusic}) { //? means - can be null
