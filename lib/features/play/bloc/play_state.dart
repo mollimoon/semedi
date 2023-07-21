@@ -6,14 +6,16 @@ class PlayState {}
 
 class PlayDataState extends PlayState with EquatableMixin {
   final MusicData music;
+  final bool isPlaying;
 
-  PlayDataState({required this.music});
+  PlayDataState({
+    required this.music,
+    required this.isPlaying,
+  });
 
   @override
-
   List<Object?> get props => [music];
 }
-
 
 // class PlayErrorState extends PlayState with EquatableMixin {
 //   final String errorText;

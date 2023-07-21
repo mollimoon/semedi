@@ -20,29 +20,23 @@ class _PlayScreenState extends State<PlayScreen> {
   // TODO 4: Implement bloc and move player and play status into it +
   late final PlayCubit _playCubit;
 
-  final player = AudioPlayer();
-  bool isPlaying = true;
+
 
   @override
   void initState() {
     super.initState();
     _playCubit = PlayCubit(music: widget.music); //обращение к полям stateful widget
 
-    setupPlayer(); // TODO 6: Replace this by bloc call
-    player.eventStream.listen((AudioEvent event) {
-      print(event.eventType);
-    });
+    _playCubit.setupPlayer(); // TODO 6: Replace this by bloc call+
+
   }
 
-  // TODO 5: Move this logic to bloc
-  void setupPlayer() async {
-    // await player.play(AssetSource('sounds/blue_ocean.wav'));
-    await player.play(UrlSource('https://www.soundjay.com/nature/ocean-wave-1.wav'));
-  }
+  // TODO 5: Move this logic to bloc+
 
   @override
   void dispose() {
-    player.dispose(); // TODO 7: Don't forget to dispose player in bloc
+     // TODO 7: Don't forget to dispose player in bloc (перенесли в кубит) +
+    _playCubit.close(); //когда возвращ на гл экран плеер останавл
     super.dispose();
   }
 
@@ -90,18 +84,11 @@ class _PlayScreenState extends State<PlayScreen> {
                       // TODO 10: Add one more state when music is finished and we want to re-play
                       ElevatedButton(
                         onPressed: () async {
-                          // TODO 8: Move all this logic to bloc
-                          if (isPlaying) {
-                            await player.pause();
-                          } else {
-                            await player.resume();
-                          }
-                          setState(() {
-                            isPlaying = !isPlaying;
-                          });
+                          // TODO 8: Move all this logic to bloc +
+                       await _playCubit.switchPlay();
                         },
                         child: Icon(
-                          isPlaying ? Icons.pause : Icons.play_arrow,
+                          state.isPlaying ? Icons.pause : Icons.play_arrow,
                           color: Colors.white,
                         ),
                         style: ElevatedButton.styleFrom(
